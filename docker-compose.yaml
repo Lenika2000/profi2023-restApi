@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  profi-API:
+    image: 'docker.io/profi/task3'
+    ports:
+      - "8082:8081"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/profi
+
+  postgres:
+    image: 'postgres'
+    build:
+      context: ./
+      dockerfile: Dockerfile.postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=profi
